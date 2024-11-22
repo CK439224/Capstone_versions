@@ -25,10 +25,25 @@ router.get('/:id', async (req, res) => {
 
 // Add a new animal
 router.post('/', async (req, res) => {
-    const animal = new RescueAnimal(req.body);
-    await animal.save();
-    res.json(animal);
+    try {
+        const animalData = req.body;
+
+        // Log the incoming data for debugging
+        console.log('Incoming animal data:', animalData);
+
+        const animal = new RescueAnimal(animalData);
+        await animal.save();
+        res.status(201).json(animal);
+    } catch (error) {
+        console.error('Error adding new animal:', error);
+        res.status(500).json({ message: 'Error adding new animal' });
+    }
 });
+
+
+
+
+
 
 // Update an animal
 router.put('/:id', async (req, res) => {
