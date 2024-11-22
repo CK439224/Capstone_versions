@@ -1,18 +1,22 @@
 // models/RescueAnimal.js
 const mongoose = require('mongoose');
 
-const rescueAnimalSchema = new mongoose.Schema({
-    name: String,
-    type: String,
-    gender: String,
-    age: Number,
-    weight: Number,
-    acquisitionDate: Date,
-    acquisitionCountry: String,
-    trainingStatus: String,
-    reserved: Boolean,
-    inServiceCountry: String,
-    adoptionStatus: String
+const RescueAnimalSchema = new mongoose.Schema({
+    name: { type: String, required: true },
+    type: { type: String, required: true },
+    gender: { type: String, required: true },
+    age: { type: Number, required: true },
+    weight: { type: Number, required: true },
+    acquisitionDate: { type: Date, required: true },
+    acquisitionCountry: { type: String, required: true },
+    trainingStatus: { type: String, required: true },
+    reserved: { type: Boolean, required: true },
+    inServiceCountry: { type: String, required: true },
+    // Monkey-specific fields
+    tailLength: { type: Number },
+    height: { type: Number },
+    bodyLength: { type: Number },
+    species: { type: String },
 });
 
-module.exports = mongoose.model('RescueAnimal', rescueAnimalSchema);
+module.exports = mongoose.model('RescueAnimal', RescueAnimalSchema);
